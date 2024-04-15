@@ -1,0 +1,14 @@
+crud
+
+Create => POST => serve para a criação 
+Read => Get => serve para ler e pegar as informações
+Update => Put => serve para atualizar as informações, editar
+Delete => Delete => Delete né carai
+
+verbos http:
+
+cliente(JSON) envia Request, HTTP traz os metodos do CRUD e o servidor(HTTP) responde o Response
+
+API = backend
+API Fake = json server para ir aprendendo crud apenas com react
+
