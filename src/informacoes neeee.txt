@@ -11,4 +11,8 @@ cliente(JSON) envia Request, HTTP traz os metodos do CRUD e o servidor(HTTP) res
 
 API = backend
 API Fake = json server para ir aprendendo crud apenas com react
+// npm i json-server
 
+no package json criar em scripts o "server" para poder rodar npm run server
+com o seguinte aspas "server": "json-server --watch db.json --port 8000"
+para fazer com que leia o arquivo db e criar tambem a porta para que ele rode 
