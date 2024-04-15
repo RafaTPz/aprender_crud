@@ -1,0 +1,107 @@
+crud
+
+Create => POST => serve para a criação 
+Read => Get => serve para ler e pegar as informações
+Update => Put => serve para atualizar as informações, editar
+Delete => Delete => Delete né carai
+
+verbos http:
+
+cliente(JSON) envia Request, HTTP traz os metodos do CRUD e o servidor(HTTP) responde o Response
+
+API = backend
+API Fake = json server para ir aprendendo crud apenas com react
+// npm i json-server
+
+no package json criar em scripts o "server" para poder rodar npm run server
+com o seguinte aspas "server": "json-server --watch db.json --port 8000"
+para fazer com que leia o arquivo db e criar tambem a porta para que ele rode 
+
+dai voce cria o arquivo do axios para criar a rota URL da API, que é a mesma do
+json-server:  
+import axios from "axios";
+
+export const api = axios.create({
+    baseURL: "http://localhost:8000"
+})
+
+dai para iniciar a API escrevo o seguinte codigo:
+  useEffect(() => {
+    api.get('/posts')
+    .then((response) => {
+      console.log(response.data)
+    })
+  }, [])
+
+  useEffect com array vazio no fim serve para que o codigo seja rodado apenas uma vez
+  pois o useEffect é uma função que pode rodar quantas vezes voce quiser
+  dependendo se vc nao poe nada no final, ou poe uma condição dentro de um array
+  ou coloca um array vazio para que só rode uma vez.
+
+  naquele seguinte codigo a api é chamada resgatando a rota /posts que é onde definimos
+  nosso db com o json-server
+  com o .then response, vemos quando o response vai puxar os dados que lá existem.
+
+  
+//
+
+inserir um estado de armazenamento para os dados puxados pelo then response
+no qual será o setPosts(ou qualquer classe useState que voce criar, utilizar o set)
+.then((response) => {
+      setPosts(response.data)
+    })
+
+
+criar um catch sempre apos os then para capturar(catch) possiveis erros(err):
+    .catch((err) => {
+      console.log(err)
+    })
+# se eu colocar no get da api um /aleatorioirineu o catch irá retornar um erro
+de que o GET está errado
+
+
+para listar as informações presentes do db após trazer tudo certinho a api digitamos
+por exemplo:
+
+return (
+    <div className="feedContainer">
+      {posts.map((post) => (
+        <li key={post.id}>{post.title}</li>
+      ))}
+      {/* <Card /> */}
+    </div>
+  );
+
+criamos o map para mapear os posts(que foi definido com o setPosts(response.data))
+trazer o post do db e desta forma dando para trazer as informações apenas
+puxando com post. alguma informação
+
+
+para passar as informações para outro arquivo, por exemplo para o card onde terá
+todas as informação buniiitin é o seguinte:
+
+<Card key={post.id} post={post}/>
+
+passamos a chave no qual é o id presente em post, e o proprio post(a variavel que
+puxa o post pode ter qualquer nome okay?)
+
+dai para puxar no arquivo filho é basicamente colocar na função e ja
+sair utilizando:
+
+export function Card({ post}) {  *
+  return (
+    <article className="cardContainer">
+      <header>
+ *       <h2>{post.title}</h2>
+        <MdDelete size={28} color="#ed4337" />
+      </header>
+*      <p>{post.description}</p>
+*      <p>{post.content}</p>
+
+      <div className="buttonsContainer">
+        <button>Ver publicação</button>
+        <button>Atualizar</button>
+      </div>
+    </article>
+  );
+}
