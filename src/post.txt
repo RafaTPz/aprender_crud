@@ -1,0 +1,125 @@
+adicionada nova biblioteca: npm i react-hook-form
+
+em createPost foram passadas no form informações para serem
+entregues no arquivo de form:
+
+<Form title={"Criar publicação"} textButton={"Enviar"} />
+
+e em update eu enviei outros dados, aproveitando da mesma Form
+utilizando paginas diferentes:
+
+<Form title={"Editar publicação"} textButton={"Atualizar"}/>
+
+
+
+e em Form eu ja trouxe as informações e passei a utilizalas:
+export function Form({title, textButton}) { *
+  return (
+    <>
+    *  <h2>{title}</h2>
+      <div className="field">
+        <input placeholder="Título" />
+      </div>
+
+      <div className="field">
+        <input placeholder="Descrição" />
+      </div>
+
+      <div className="field">
+        <textarea placeholder="Descrição" />
+      </div>
+
+     * <button>{textButton}</button>
+
+
+importa o useForm da biblioteca em que instalamos
+import {useForm} from "react-hook-form";
+
+export function Form({title, textButton}) {
+  const {register, handleSubmit} = useForm();
+
+trazemos duas funções do useForm, uma que serve para o
+registro e outra para o envio de informações.
+
+
+dessa forma registramos os arquivos para onde irão ser registrados
+os nossos inputs no db.json:
+
+<input placeholder="Título" {...register("title")}/>
+<input placeholder="Descrição" {...register("description")} />
+<textarea placeholder="Conteúdo" {...register("conteudo")}/>
+
+
+com a função onSubmit nativo do proprio html colocarem a função do
+handleSubmit e dentro dele colocaremos uma função nossa criada:
+
+  const {register, handleSubmit} = useForm();
+
+  function handleCreatePost() { 
+    console.log("Post Criado")
+  }
+  return (
+    <form onSubmit={handleSubmit(handleCreatePost)}>
+na qual com isso será enviado o que queremos
+
+na função em que eu criei, se eu colocar um data vai puxar
+exatamente os arquivos submitados:
+
+  function handleCreatePost(data) { 
+    console.log(data)
+  }
+
+
+importamos a api e damos get na rota do nosso banco de dados:
+
+import {api} from "../../lib/axios"
+export function Form({title, textButton}) {
+
+  const {register, handleSubmit, reset} = useForm();
+
+  function handleCreatePost(data) { 
+    api.get('/posts')
+  }
+
+  alias foi trazida a função reset do useForm que serve para isso mesmo resetarkkkkkk
+
+
+colocando o data ao lado o post é criado na db wowwwwww que maneiro
+
+  function handleCreatePost(data) { 
+    api.get('/posts', data)
+    reset()
+  }
+poreeem como nem tudo sao flores o codigo acima ainda tem falhas
+como por exemplo ele pode criar um post apenas com titulo escrito
+
+
+instalar biblioteca de validação que trablha junto do hook-form
+npm i @hookform/resolvers yup
+
+importamos o yup e criaremos um schema:
+
+import * as yup from "yup";
+import {yupResolver} from '@hookform/resolvers/yup'
+const postSchema = yup.object({
+
+})
+
+dentro do esquema é onde criaremos as validações 
+como por exemplo eu criei uma validação que seja string e requerida:
+ const postSchema = yup.object({
+  title: yup.string().required(),
+  description: yup.string().required(),
+  content: yup.string().required()
+})
+
+para que funcionem em conjunto inserir como resolver 
+o yupResolver contendo o schema dentro:  
+  const {register, handleSubmit, reset} = useForm({
+    resolver: yupResolver(postSchema)
+  });
+
+agora se for dar o submit nao ira funcionar ate os requerimentos
+do Schema sejam atendidos.
+
+

@@ -3,7 +3,7 @@ import { Form } from "../../components/Form";
 export function UpdatePost() {
     return (
         <div>
-            <Form />
+            <Form title={"Editar publicação"} textButton={"Atualizar"}/>
         </div>
     )
 }
