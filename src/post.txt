@@ -104,7 +104,7 @@ import {yupResolver} from '@hookform/resolvers/yup'
 const postSchema = yup.object({
 
 })
-
+  
 dentro do esquema é onde criaremos as validações 
 como por exemplo eu criei uma validação que seja string e requerida:
  const postSchema = yup.object({
