@@ -87,7 +87,7 @@ export function Form({title, textButton}) {
 colocando o data ao lado o post é criado na db wowwwwww que maneiro
 
   function handleCreatePost(data) { 
-    api.get('/posts', data)
+    api.post('/posts', data)
     reset()
   }
 poreeem como nem tudo sao flores o codigo acima ainda tem falhas
@@ -123,3 +123,18 @@ agora se for dar o submit nao ira funcionar ate os requerimentos
 do Schema sejam atendidos.
 
 
+
+adicionamos um formState do useForm para pegar os erros:
+
+  const {register, handleSubmit, reset, formState: { errors }} = useForm({
+
+
+e para inserir colocar abaixo dos inputs para cada um:
+  <input placeholder="Título" {...register("title")}/>
+*  {errors.title?.message}
+
+
+podemos mudar a mensagem de erro inserindo a mensagem dentro do required:
+  content: yup.string().required("O campo de conteúdo deve ser preenchido!")
+
+  importar o useNavigate do react-router-dom e adicionar o navigate('/') no handleCreatePost

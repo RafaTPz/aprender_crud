@@ -1,22 +1,34 @@
 {
-    "posts": [
-        {
-            "id": 1,
-            "title": "ola",
-            "description": "diga ola de volta carai",
-            "content": "to te avisando carai, eu em, oxi"
-        },
-        {
-            "id": 2,
-            "title": "responde",
-            "description": "vai responder nao carai?",
-            "content": "eu em to me estressando"
-        },
-        {
-            "id": 3,
-            "title": "tchau",
-            "description": "aff to me ino embora",
-            "content": "flw chatao du garai"
-        }
-    ]
+  "posts": [
+    {
+      "id": "1",
+      "title": "ola",
+      "description": "diga ola de volta carai",
+      "content": "to te avisando carai, eu em, oxi"
+    },
+    {
+      "id": "2",
+      "title": "responde",
+      "description": "vai responder nao carai?",
+      "content": "eu em to me estressando"
+    },
+    {
+      "id": "3",
+      "title": "tchau",
+      "description": "aff to me ino embora",
+      "content": "flw chatao du garai"
+    },
+    {
+      "id": "4",
+      "title": "asasa",
+      "description": "asasa",
+      "content": "asasa"
+    },
+    {
+      "id": "5",
+      "title": "oiiiiiiiiiiiiiiiiiii",
+      "description": "volteiiiiii",
+      "content": "hehehhe"
+    }
+  ]
 }
