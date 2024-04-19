@@ -15,10 +15,15 @@ export function Feed() {
         console.log(err);
       });
   }, []);
+
+  function handleDeletePost(id) {
+    setPosts(posts.filter(post => post.id !== id))
+    api.delete(`/posts/${id}`)
+  }
   return (
     <div className="feedContainer">
       {posts.map((post) => (
-        <Card key={post.id} post={post}/>
+        <Card key={post.id} post={post} onDeletePost={handleDeletePost}/>
       ))}
     </div>
   );
