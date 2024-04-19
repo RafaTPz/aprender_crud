@@ -14,8 +14,8 @@ export function Card({ post}) {
 
       <div className="buttonsContainer">
         <button>Ver publicação</button>
-        <button onClick={() => {navigate('/updatepost')}}>Atualizar</button>
+        <button onClick={() => {navigate(`/updatepost/${post.id}`)}}>Atualizar</button>
       </div>
     </article>
   );
-}
+} 

@@ -1,0 +1,68 @@
+colocar a id na rota, pois para update queremos pegar apenas 1 produto:
+
+<Route path="/updatepost/:id" element={<UpdatePost />} />
+
+
+
+colocar acentos agudos`` e puxar o id do post especifico no card no botao de atualizar:
+sem o : da rota carai(passei raivakkkk)
+<button onClick={() => {navigate(`/updatepost/${post.id}`)}}>Atualizar</button>
+
+e dessa forma abriremos o link correto para editar 
+
+
+
+em UpdatePost importar a função useParams do router dom que serve para pegar
+os parametros do link:
+
+import { useParams } from "react-router-dom";
+
+export function UpdatePost() 
+
+    const {id} = useParams()
+    console.log(id)
+
+
+
+então criamos nossa função na qual atualizaremos o post da api pelo id
+puxamos o id do params no caminho da api
+colocamos put que serve para atualizar dados, e colocamos junto data(informaçoes):
+    function handleUpdatePost(data) {
+        api.put(`/post/${id}`, data)
+    }
+
+
+
+em Form criamos o onAction como prop:
+
+export function Form({title, textButton, onAction})
+
+e inserimos no handleSubmit
+    <form onSubmit={handleSubmit(onAction)}>
+
+dai então nas paginas inserimos o onAction com suas respectivas funções:
+
+<Form title={"Editar publicação"} textButton={"Atualizar"} onAction={handleUpdatePost}/>
+
+
+
+
+
+
+trazer dados no input
+
+inserimos na pagina Form o useParams igual antes
+
+e depois utilizamos o async await para uma função que puxe os dados com get:
+
+ async function getDataUpdate() {
+  const response = await api.get(`/posts/${id}`)
+  reset(response.data)
+}
+  useEffect(() => {
+    getDataUpdate()
+  }, [])
+
+// o async await serve para tipo, enquanto (await) api.get(`/posts/${id}`) nao for executado
+reset nao sera feito;
+

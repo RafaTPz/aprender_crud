@@ -3,4 +3,14 @@ header {
     width: 100%;
     text-align: center;
     padding: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+}
+img{
+    margin-left: 4rem;
+}
+button{
+    margin-right: 4rem;
+    background-color: rgb(39, 147, 248);
+    color: white;
 }

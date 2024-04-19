@@ -4,12 +4,10 @@ import { Router } from "./Router";
 
 function App() {
   return (
-    <>
-      <Header />
       <BrowserRouter>
+        <Header />
         <Router/>
       </BrowserRouter>
-    </>
   );
 }
 
